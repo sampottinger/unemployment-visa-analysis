@@ -6,7 +6,18 @@ Study on immigration and worker visas during COVID.
 
 Works Cited
 ----------------------------------------------------------------------------------------------------
-In progress (as are comments for the viz sorry).
+1. "Employment Situation Summary." _Employment Situation Summary_, U.S. Bureau of Labor Statistics, 5 June 2020, [www.bls.gov/news.release/empsit.nr0.htm](https://www.bls.gov/news.release/empsit.nr0.htm).
+2. Iacurci, Greg. "Dems, GOP Continue to Spar over Extension of Extra $600 in Unemployment Benefits." _CNBC_, CNBC LLC, 11 June 2020, [www.cnbc.com/2020/06/11/dems-gop-spar-over-extension-of-extra-600-in-unemployment-benefits.html](https://www.cnbc.com/2020/06/11/dems-gop-spar-over-extension-of-extra-600-in-unemployment-benefits.html).
+3. Scott, Dylan. "8 States That Experts Worry Are the New Covid-19 Hot Spots." _Vox_, Vox Media, 10 June 2020, [www.vox.com/2020/6/10/21286696/us-covid-19-coronavirus-cases-update-texas-arizona-north-carolina](https://www.vox.com/2020/6/10/21286696/us-covid-19-coronavirus-cases-update-texas-arizona-north-carolina).
+4. Sherman, Jake, and Anna Palmer. "POLITICO Playbook: NEW: Trump's Hill Allies Float a Fresh Immigration Crackdown." _Politico_, Politico LLC, 7 May 2020, [www.politico.com/newsletters/playbook/2020/05/07/new-trumps-hill-allies-float-a-fresh-immigration-crackdown-489146](https://www.politico.com/newsletters/playbook/2020/05/07/new-trumps-hill-allies-float-a-fresh-immigration-crackdown-489146).
+5. Shear, Michael D, and Miriam Jordan. "Trump Suspends Visas Allowing Hundreds of Thousands of Foreigners to Work in the U.S." _The New York Times_, The New York Times Company, 22 June 2020, [www.nytimes.com/2020/06/22/us/politics/trump-h1b-work-visas.html](https://www.nytimes.com/2020/06/22/us/politics/trump-h1b-work-visas.html).
+6. Mayda, Anna Maria, et al. “The Effect of the H-1B Quota on Employment and Selection of Foreign-Born Labor.” National Bureau of Economic Research, Oct. 2017, [doi:10.3386/w23902](https://www.nber.org/papers/w23902).
+7. Card, David. "Is the New Immigration Really so Bad?" _The Economic Journal_, vol. 115, no. 507, Nov. 2005, [doi:10.1111/j.1468-0297.2005.01037.x](https://www.jstor.org/stable/3590383?seq=1).
+8. Fromentin, Vincent. "Migration and Unemployment Duration in OECD Countries: A Dynamic Panel Analysis." _Economics Bulletin_, vol. 321113-1124, Jan. 2012, pp. 1113–1124., [ideas.repec.org/a/ebl/ecbull/eb-11-00868.html](https://ideas.repec.org/a/ebl/ecbull/eb-11-00868.html).
+9. "A-30. Unemployed Persons by Occupation and Sex." _U.S. Bureau of Labor Statistics_, U.S. Bureau of Labor Statistics, 5 June 2020, [www.bls.gov/web/empsit/cpseea30.htm](https://www.bls.gov/web/empsit/cpseea30.htm).
+10. "Disclosure Data." _OFLC Performance Data_, US Department of Labor, 15 Apr. 2020, [www.foreignlaborcert.doleta.gov/performancedata.cfm](https://www.foreignlaborcert.doleta.gov/performancedata.cfm).
+11. Brown, Clair. "Unemployment Theory and Policy, 1946–1980." _Industrial Relations_, vol. 22, no. 2, Mar. 1983, pp. 164–185., [doi:10.1111/j.1468-232x.1983.tb00262.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-232X.1983.tb00262.x).
+12. "2019 Fast Facts." _Fast Facts_, Institute of International Education, Inc, [www.iie.org/Research-and-Insights/Open-Doors/Fact-Sheets-and-Infographics/Fast-Facts](https://www.iie.org/Research-and-Insights/Open-Doors/Fact-Sheets-and-Infographics/Fast-Facts).
 
 <br>
 
