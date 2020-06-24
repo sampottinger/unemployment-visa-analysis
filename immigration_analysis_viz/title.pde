@@ -10,7 +10,19 @@ void drawTitle() {
   textFont(HEADER_FONT);
   textAlign(LEFT, BOTTOM);
   fill(BLACK);
-  text(USE_SLOPEGRAPH ? "Visas and the US Workforce During COVID-19" : "Hypothetical Unemployment During COVID-19", 5, HEADER_HEIGHT - 5);
+  
+  String title;
+  if (MODE == Mode.WORKFORCE_SHARE) {
+    title = "Visas and the US Workforce During COVID-19";
+  } else if (MODE == Mode.CHANGE_UNEMPLOYMENT) {
+    title =  "Change in Unemployment During COVID";
+  } else if (MODE == Mode.PROJECTIONS) {
+    title = "Hypothetical Unemployment During COVID-19";
+  } else {
+    title = "";
+  }
+  
+  text(title, 5, HEADER_HEIGHT - 5);
   
   textFont(SMALL_FONT);
   textAlign(RIGHT, BOTTOM);
