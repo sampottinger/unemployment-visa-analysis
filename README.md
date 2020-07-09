@@ -29,7 +29,7 @@ Code under the [MIT license](https://opensource.org/licenses/MIT) as discussed i
 
 Data
 ----------------------------------------------------------------------------------------------------
-Summary data available at `unemployment_and_counts_extended.csv`. Full data available for [separate download](https://gleap.org/static/special/immigration_analysis_db.zip).
+Summary data available at `unemployment_and_counts_extended.csv`. Full data available for [separate download](https://gleap.org/static/special/immigration_analysis_db.zip) which further describes the preprocessing and assembly in greater detail through the views included in the database. Additional pre-processing scripts in this repository.
 
 <br>
 
@@ -52,4 +52,5 @@ Non-code resources also used:
 
  - [Lato](http://www.latofonts.com/lato-free-fonts/) under the [SIL Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
  - [Colorbrewer 2](https://colorbrewer2.org/) under the [Apache v2 License](https://github.com/axismaps/colorbrewer/blob/master/LICENCE.txt).
-  - Code written in [Processing](https://processing.org/) programming language under the [LGPL v2.1 license](https://github.com/processing/processing4/blob/master/LICENSE.md).
+ - Code written in [Processing](https://processing.org/) programming language under the [LGPL v2.1 license](https://github.com/processing/processing4/blob/master/LICENSE.md).
+ - [OpenRefine](https://openrefine.org/) was used for some preprocessing.
