@@ -1,0 +1,1170 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "CASE_NUMBER",
+    "description": "Remove column CASE_NUMBER"
+  },
+  {
+    "op": "core/row-removal",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "CASE_STATUS",
+          "expression": "value",
+          "columnName": "CASE_STATUS",
+          "invert": true,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "Certified",
+                "l": "Certified"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "description": "Remove rows"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "CASE_STATUS",
+    "description": "Remove column CASE_STATUS"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "RECEIVED_DATE",
+    "newColumnName": "recievedDate",
+    "description": "Rename column RECEIVED_DATE to recievedDate"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "DECISION_DATE",
+    "newColumnName": "decisionDate",
+    "description": "Rename column DECISION_DATE to decisionDate"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "recievedDate",
+    "expression": "jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column recievedDate using expression jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "decisionDate",
+    "expression": "jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column decisionDate using expression jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "ORIGINAL_CERT_DATE",
+    "description": "Remove column ORIGINAL_CERT_DATE"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "VISA_CLASS",
+    "newColumnName": "visaClass",
+    "description": "Rename column VISA_CLASS to visaClass"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "JOB_TITLE",
+    "newColumnName": "jobTitle",
+    "description": "Rename column JOB_TITLE to jobTitle"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "SOC_CODE",
+    "newColumnName": "occCode",
+    "description": "Rename column SOC_CODE to occCode"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "SOC_TITLE",
+    "newColumnName": "occTitle",
+    "description": "Rename column SOC_TITLE to occTitle"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "occCode",
+    "expression": "jython:return value.split('-')[0]",
+    "onError": "set-to-blank",
+    "newColumnName": "majorOccCode",
+    "columnInsertIndex": 5,
+    "description": "Create column majorOccCode at index 5 based on column occCode using expression jython:return value.split('-')[0]"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "FULL_TIME_POSITION",
+    "newColumnName": "isFullTime",
+    "description": "Rename column FULL_TIME_POSITION to isFullTime"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "isFullTime",
+    "expression": "jython:return 1 if value == 'Y' else 0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column isFullTime using expression jython:return 1 if value == 'Y' else 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "BEGIN_DATE",
+    "newColumnName": "visaBeginDate",
+    "description": "Rename column BEGIN_DATE to visaBeginDate"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "END_DATE",
+    "newColumnName": "visaEndDate",
+    "description": "Rename column END_DATE to visaEndDate"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "visaBeginDate",
+    "expression": "jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column visaBeginDate using expression jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "visaEndDate",
+    "expression": "jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column visaEndDate using expression jython:values = value.split('/')\nmonth = int(values[0])\nday = int(values[1])\n\nif month < 10:\n  month_str = '0' + str(month)\nelse:\n  month_str = str(month)\n\nif day < 10:\n  day_str = '0' + str(day)\nelse:\n  day_str = str(day)\n\nreturn values[2] + '-' + month_str + '-' + day_str"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "TOTAL_WORKER_POSITIONS",
+    "newColumnName": "totalWorkerPositions",
+    "description": "Rename column TOTAL_WORKER_POSITIONS to totalWorkerPositions"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "NEW_EMPLOYMENT",
+    "newColumnName": "newEmployment",
+    "description": "Rename column NEW_EMPLOYMENT to newEmployment"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "CONTINUED_EMPLOYMENT",
+    "newColumnName": "continuedEmployment",
+    "description": "Rename column CONTINUED_EMPLOYMENT to continuedEmployment"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "CHANGE_PREVIOUS_EMPLOYMENT",
+    "newColumnName": "changePreviousEmployment",
+    "description": "Rename column CHANGE_PREVIOUS_EMPLOYMENT to changePreviousEmployment"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "totalWorkerPositions",
+    "newColumnName": "totalWorkerPositionsCnt",
+    "description": "Rename column totalWorkerPositions to totalWorkerPositionsCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "newEmployment",
+    "newColumnName": "newEmploymentCnt",
+    "description": "Rename column newEmployment to newEmploymentCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "continuedEmployment",
+    "newColumnName": "continuedEmploymentCnt",
+    "description": "Rename column continuedEmployment to continuedEmploymentCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "changePreviousEmployment",
+    "newColumnName": "changePreviousEmploymentCnt",
+    "description": "Rename column changePreviousEmployment to changePreviousEmploymentCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "NEW_CONCURRENT_EMPLOYMENT",
+    "newColumnName": "newConcurrentEmploymentCnt",
+    "description": "Rename column NEW_CONCURRENT_EMPLOYMENT to newConcurrentEmploymentCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "CHANGE_EMPLOYER",
+    "newColumnName": "changeEmployerCnt",
+    "description": "Rename column CHANGE_EMPLOYER to changeEmployerCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "AMENDED_PETITION",
+    "newColumnName": "amendedPetitionCnt",
+    "description": "Rename column AMENDED_PETITION to amendedPetitionCnt"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "EMPLOYER_NAME",
+    "newColumnName": "employerName",
+    "description": "Rename column EMPLOYER_NAME to employerName"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "TRADE_NAME_DBA",
+    "newColumnName": "tradeNameDba",
+    "description": "Rename column TRADE_NAME_DBA to tradeNameDba"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_ADDRESS1",
+    "description": "Remove column EMPLOYER_ADDRESS1"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_ADDRESS2",
+    "description": "Remove column EMPLOYER_ADDRESS2"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_CITY",
+    "description": "Remove column EMPLOYER_CITY"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "EMPLOYER_STATE",
+    "newColumnName": "employerState",
+    "description": "Rename column EMPLOYER_STATE to employerState"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "EMPLOYER_POSTAL_CODE",
+    "newColumnName": "employerZipCode",
+    "description": "Rename column EMPLOYER_POSTAL_CODE to employerZipCode"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "EMPLOYER_COUNTRY",
+    "newColumnName": "employerCountry",
+    "description": "Rename column EMPLOYER_COUNTRY to employerCountry"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_PROVINCE",
+    "description": "Remove column EMPLOYER_PROVINCE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_PHONE",
+    "description": "Remove column EMPLOYER_PHONE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_PHONE_EXT",
+    "description": "Remove column EMPLOYER_PHONE_EXT"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "NAICS_CODE",
+    "newColumnName": "naicsCode",
+    "description": "Rename column NAICS_CODE to naicsCode"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_LAST_NAME",
+    "description": "Remove column EMPLOYER_POC_LAST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_FIRST_NAME",
+    "description": "Remove column EMPLOYER_POC_FIRST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_MIDDLE_NAME",
+    "description": "Remove column EMPLOYER_POC_MIDDLE_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_JOB_TITLE",
+    "description": "Remove column EMPLOYER_POC_JOB_TITLE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_ADDRESS1",
+    "description": "Remove column EMPLOYER_POC_ADDRESS1"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_ADDRESS2",
+    "description": "Remove column EMPLOYER_POC_ADDRESS2"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_CITY",
+    "description": "Remove column EMPLOYER_POC_CITY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_STATE",
+    "description": "Remove column EMPLOYER_POC_STATE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_POSTAL_CODE",
+    "description": "Remove column EMPLOYER_POC_POSTAL_CODE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_COUNTRY",
+    "description": "Remove column EMPLOYER_POC_COUNTRY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_PROVINCE",
+    "description": "Remove column EMPLOYER_POC_PROVINCE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_PHONE",
+    "description": "Remove column EMPLOYER_POC_PHONE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_PHONE_EXT",
+    "description": "Remove column EMPLOYER_POC_PHONE_EXT"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "EMPLOYER_POC_EMAIL",
+    "description": "Remove column EMPLOYER_POC_EMAIL"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_REPRESENTING_EMPLOYER",
+    "description": "Remove column AGENT_REPRESENTING_EMPLOYER"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_LAST_NAME",
+    "description": "Remove column AGENT_ATTORNEY_LAST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_FIRST_NAME",
+    "description": "Remove column AGENT_ATTORNEY_FIRST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_MIDDLE_NAME",
+    "description": "Remove column AGENT_ATTORNEY_MIDDLE_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_ADDRESS1",
+    "description": "Remove column AGENT_ATTORNEY_ADDRESS1"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_ADDRESS2",
+    "description": "Remove column AGENT_ATTORNEY_ADDRESS2"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_CITY",
+    "description": "Remove column AGENT_ATTORNEY_CITY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_STATE",
+    "description": "Remove column AGENT_ATTORNEY_STATE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_POSTAL_CODE",
+    "description": "Remove column AGENT_ATTORNEY_POSTAL_CODE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_COUNTRY",
+    "description": "Remove column AGENT_ATTORNEY_COUNTRY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_PROVINCE",
+    "description": "Remove column AGENT_ATTORNEY_PROVINCE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_PHONE",
+    "description": "Remove column AGENT_ATTORNEY_PHONE"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_PHONE_EXT",
+    "description": "Remove column AGENT_ATTORNEY_PHONE_EXT"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGENT_ATTORNEY_EMAIL_ADDRESS",
+    "description": "Remove column AGENT_ATTORNEY_EMAIL_ADDRESS"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "LAWFIRM_NAME_BUSINESS_NAME",
+    "description": "Remove column LAWFIRM_NAME_BUSINESS_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "STATE_OF_HIGHEST_COURT",
+    "description": "Remove column STATE_OF_HIGHEST_COURT"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "NAME_OF_HIGHEST_STATE_COURT",
+    "description": "Remove column NAME_OF_HIGHEST_STATE_COURT"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "WORKSITE_WORKERS",
+    "description": "Remove column WORKSITE_WORKERS"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "SECONDARY_ENTITY",
+    "description": "Remove column SECONDARY_ENTITY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "SECONDARY_ENTITY_BUSINESS_NAME",
+    "description": "Remove column SECONDARY_ENTITY_BUSINESS_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "WORKSITE_ADDRESS1",
+    "description": "Remove column WORKSITE_ADDRESS1"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "WORKSITE_ADDRESS2",
+    "description": "Remove column WORKSITE_ADDRESS2"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "WORKSITE_CITY",
+    "description": "Remove column WORKSITE_CITY"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "WORKSITE_COUNTY",
+    "description": "Remove column WORKSITE_COUNTY"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WORKSITE_STATE",
+    "newColumnName": "worksiteState",
+    "description": "Rename column WORKSITE_STATE to worksiteState"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WORKSITE_POSTAL_CODE",
+    "newColumnName": "worksiteZipCod",
+    "description": "Rename column WORKSITE_POSTAL_CODE to worksiteZipCod"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "worksiteZipCod",
+    "newColumnName": "worksiteZipCode",
+    "description": "Rename column worksiteZipCod to worksiteZipCode"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WAGE_RATE_OF_PAY_FROM",
+    "newColumnName": "wageRateOfPayFromUsd",
+    "description": "Rename column WAGE_RATE_OF_PAY_FROM to wageRateOfPayFromUsd"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "wageRateOfPayFromUsd",
+    "expression": "jython:return float(value.replace('$', '').replace(',', ''))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column wageRateOfPayFromUsd using expression jython:return float(value.replace('$', '').replace(',', ''))"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "WAGE_RATE_OF_PAY_TO",
+    "expression": "jython:return float(value.replace('$', '').replace(',', ''))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column WAGE_RATE_OF_PAY_TO using expression jython:return float(value.replace('$', '').replace(',', ''))"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WAGE_RATE_OF_PAY_TO",
+    "newColumnName": "wateRateOfPayToUsd",
+    "description": "Rename column WAGE_RATE_OF_PAY_TO to wateRateOfPayToUsd"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WAGE_UNIT_OF_PAY",
+    "newColumnName": "wageUnitOfPay",
+    "description": "Rename column WAGE_UNIT_OF_PAY to wageUnitOfPay"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "PREVAILING_WAGE",
+    "expression": "jython:return '$' in value",
+    "onError": "set-to-blank",
+    "newColumnName": "wageHadDolalr",
+    "columnInsertIndex": 29,
+    "description": "Create column wageHadDolalr at index 29 based on column PREVAILING_WAGE using expression jython:return '$' in value"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "wageHadDolalr",
+    "description": "Remove column wageHadDolalr"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "PREVAILING_WAGE",
+    "expression": "jython:return float(value.replace('$', '').replace(',', ''))",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column PREVAILING_WAGE using expression jython:return float(value.replace('$', '').replace(',', ''))"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PREVAILING_WAGE",
+    "newColumnName": "prevalingWageUsd",
+    "description": "Rename column PREVAILING_WAGE to prevalingWageUsd"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_UNIT_OF_PAY",
+    "newColumnName": "prevalingWageUnitOfPay",
+    "description": "Rename column PW_UNIT_OF_PAY to prevalingWageUnitOfPay"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PW_TRACKING_NUMBER",
+    "description": "Remove column PW_TRACKING_NUMBER"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_WAGE_LEVEL",
+    "newColumnName": "prevalingWageLevel",
+    "description": "Rename column PW_WAGE_LEVEL to prevalingWageLevel"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "prevalingWageLevel",
+    "expression": "jython:conversions = {'I': 1, 'II': 2, 'III': 3, 'IV': 4}\n\ntry:\n  return int(value)\nexcept:\n  return conversions.get(value, '')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column prevalingWageLevel using expression jython:conversions = {'I': 1, 'II': 2, 'III': 3, 'IV': 4}\n\ntry:\n  return int(value)\nexcept:\n  return conversions.get(value, '')"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_OES_YEAR",
+    "newColumnName": "prevalingWageOESYear",
+    "description": "Rename column PW_OES_YEAR to prevalingWageOESYear"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_OTHER_SOURCE",
+    "newColumnName": "prevalingWageOtherSource",
+    "description": "Rename column PW_OTHER_SOURCE to prevalingWageOtherSource"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_OTHER_YEAR",
+    "newColumnName": "prevalingWageOtherYear",
+    "description": "Rename column PW_OTHER_YEAR to prevalingWageOtherYear"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_SURVEY_PUBLISHER",
+    "newColumnName": "prevalingWageSurveyPublisher",
+    "description": "Rename column PW_SURVEY_PUBLISHER to prevalingWageSurveyPublisher"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PW_SURVEY_NAME",
+    "newColumnName": "prevalingWageSurveyName",
+    "description": "Rename column PW_SURVEY_NAME to prevalingWageSurveyName"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "TOTAL_WORKSITE_LOCATIONS",
+    "description": "Remove column TOTAL_WORKSITE_LOCATIONS"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "AGREE_TO_LC_STATEMENT",
+    "description": "Remove column AGREE_TO_LC_STATEMENT"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "H-1B_DEPENDENT",
+    "newColumnName": "h1bDependent",
+    "description": "Rename column H-1B_DEPENDENT to h1bDependent"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "h1bDependent",
+    "expression": "jython:return 1 if value == 'Y' else 0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column h1bDependent using expression jython:return 1 if value == 'Y' else 0"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "WILLFUL_VIOLATOR",
+    "expression": "jython:return 1 if value == 'Y' else 0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column WILLFUL_VIOLATOR using expression jython:return 1 if value == 'Y' else 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "SUPPORT_H1B",
+    "newColumnName": "supportH1b",
+    "description": "Rename column SUPPORT_H1B to supportH1b"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "supportH1b",
+    "expression": "jython:return 1 if value == 'Y' else 0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column supportH1b using expression jython:return 1 if value == 'Y' else 0"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "STATUTORY_BASIS",
+    "newColumnName": "statutoryBasis",
+    "description": "Rename column STATUTORY_BASIS to statutoryBasis"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "APPENDIX_A_ATTACHED",
+    "description": "Remove column APPENDIX_A_ATTACHED"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "PUBLIC_DISCLOSURE",
+    "newColumnName": "publicDisclosure",
+    "description": "Rename column PUBLIC_DISCLOSURE to publicDisclosure"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PREPARER_LAST_NAME",
+    "description": "Remove column PREPARER_LAST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PREPARER_FIRST_NAME",
+    "description": "Remove column PREPARER_FIRST_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PREPARER_MIDDLE_INITIAL",
+    "description": "Remove column PREPARER_MIDDLE_INITIAL"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PREPARER_BUSINESS_NAME",
+    "description": "Remove column PREPARER_BUSINESS_NAME"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "PREPARER_EMAIL",
+    "description": "Remove column PREPARER_EMAIL"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "visaEndDate",
+    "expression": "jython:return value > '2020' and cells['visaBeginDate'].value < '2021'",
+    "onError": "set-to-blank",
+    "newColumnName": "visaActiveDuring2020",
+    "columnInsertIndex": 10,
+    "description": "Create column visaActiveDuring2020 at index 10 based on column visaEndDate using expression jython:return value > '2020' and cells['visaBeginDate'].value < '2021'"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "totalWorkerPositionsCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column totalWorkerPositionsCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "newEmploymentCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column newEmploymentCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "continuedEmploymentCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column continuedEmploymentCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "changePreviousEmploymentCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column changePreviousEmploymentCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "newConcurrentEmploymentCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column newConcurrentEmploymentCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "changeEmployerCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column changeEmployerCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "amendedPetitionCnt",
+    "expression": "jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column amendedPetitionCnt using expression jython:if value == 'Y':\n  return 1\nelif value == 'N':\n  return 0\nelse:\n  return int(value)"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "WILLFUL_VIOLATOR",
+    "newColumnName": "willfulViolator",
+    "description": "Rename column WILLFUL_VIOLATOR to willfulViolator"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "majorOccCode",
+    "description": "Remove column majorOccCode"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "majorOccCode",
+          "expression": "value",
+          "columnName": "majorOccCode",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "44",
+                "l": "44"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "baseColumnName": "occCode",
+    "expression": "jython:return '-' in value",
+    "onError": "set-to-blank",
+    "newColumnName": "occCodeWellFormated",
+    "columnInsertIndex": 5,
+    "description": "Create column occCodeWellFormated at index 5 based on column occCode using expression jython:return '-' in value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "majorOccCode",
+          "expression": "value",
+          "columnName": "majorOccCode",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "44",
+                "l": "44"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "baseColumnName": "occCode",
+    "expression": "jython:return value[:2]",
+    "onError": "set-to-blank",
+    "newColumnName": "majorOccCode",
+    "columnInsertIndex": 5,
+    "description": "Create column majorOccCode at index 5 based on column occCode using expression jython:return value[:2]"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "occCodeWellFormated",
+    "newColumnName": "occCodeWellFormatted",
+    "description": "Rename column occCodeWellFormated to occCodeWellFormatted"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "visaEndDate",
+    "expression": "jython:return value > '2020-05'",
+    "onError": "set-to-blank",
+    "newColumnName": "visaActiveDuringMay2020",
+    "columnInsertIndex": 11,
+    "description": "Create column visaActiveDuringMay2020 at index 11 based on column visaEndDate using expression jython:return value > '2020-05'"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "newEmploymentCnt",
+    "description": "Remove column newEmploymentCnt"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "continuedEmploymentCnt",
+    "description": "Remove column continuedEmploymentCnt"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "changePreviousEmploymentCnt",
+    "description": "Remove column changePreviousEmploymentCnt"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "newConcurrentEmploymentCnt",
+    "description": "Remove column newConcurrentEmploymentCnt"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "changeEmployerCnt",
+    "description": "Remove column changeEmployerCnt"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "amendedPetitionCnt",
+    "description": "Remove column amendedPetitionCnt"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "worksiteState",
+    "expression": "jython:abbreviations = {\"alabama\": \"al\",\n\"alaska\": \"ak\",\n\"arizona\": \"az\",\n\"arkansas\": \"ar\",\n\"california\": \"ca\",\n\"colorado\": \"co\",\n\"connecticut\": \"ct\",\n\"delaware\": \"de\",\n\"florida\": \"fl\",\n\"georgia\": \"ga\",\n\"hawaii\": \"hi\",\n\"idaho\": \"id\",\n\"illinois\": \"il\",\n\"indiana\": \"in\",\n\"iowa\": \"ia\",\n\"kansas\": \"ks\",\n\"kentucky\": \"ky\",\n\"louisiana\": \"la\",\n\"maine\": \"me\",\n\"maryland\": \"md\",\n\"massachusetts\": \"ma\",\n\"michigan\": \"mi\",\n\"minnesota\": \"mn\",\n\"mississippi\": \"ms\",\n\"missouri\": \"mo\",\n\"montana\": \"mt\",\n\"nebraska\": \"ne\",\n\"nevada\": \"nv\",\n\"new hampshire\": \"nh\",\n\"new jersey\": \"nj\",\n\"new mexico\": \"nm\",\n\"new york\": \"ny\",\n\"north carolina\": \"nc\",\n\"north dakota\": \"nd\",\n\"ohio\": \"oh\",\n\"oklahoma\": \"ok\",\n\"oregon\": \"or\",\n\"pennsylvania\": \"pa\",\n\"rhode island\": \"ri\",\n\"south carolina\": \"sc\",\n\"south dakota\": \"sd\",\n\"tennessee\": \"tn\",\n\"texas\": \"tx\",\n\"utah\": \"ut\",\n\"vermont\": \"vt\",\n\"virginia\": \"va\",\n\"washington\": \"wa\",\n\"west virginia\": \"wv\",\n\"wisconsin\": \"wi\",\n\"wyoming\": \"wy\"}\n\nvalue_lower = value.lower()\nreturn abbreviations.get(value_lower, value_lower).upper()",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column worksiteState using expression jython:abbreviations = {\"alabama\": \"al\",\n\"alaska\": \"ak\",\n\"arizona\": \"az\",\n\"arkansas\": \"ar\",\n\"california\": \"ca\",\n\"colorado\": \"co\",\n\"connecticut\": \"ct\",\n\"delaware\": \"de\",\n\"florida\": \"fl\",\n\"georgia\": \"ga\",\n\"hawaii\": \"hi\",\n\"idaho\": \"id\",\n\"illinois\": \"il\",\n\"indiana\": \"in\",\n\"iowa\": \"ia\",\n\"kansas\": \"ks\",\n\"kentucky\": \"ky\",\n\"louisiana\": \"la\",\n\"maine\": \"me\",\n\"maryland\": \"md\",\n\"massachusetts\": \"ma\",\n\"michigan\": \"mi\",\n\"minnesota\": \"mn\",\n\"mississippi\": \"ms\",\n\"missouri\": \"mo\",\n\"montana\": \"mt\",\n\"nebraska\": \"ne\",\n\"nevada\": \"nv\",\n\"new hampshire\": \"nh\",\n\"new jersey\": \"nj\",\n\"new mexico\": \"nm\",\n\"new york\": \"ny\",\n\"north carolina\": \"nc\",\n\"north dakota\": \"nd\",\n\"ohio\": \"oh\",\n\"oklahoma\": \"ok\",\n\"oregon\": \"or\",\n\"pennsylvania\": \"pa\",\n\"rhode island\": \"ri\",\n\"south carolina\": \"sc\",\n\"south dakota\": \"sd\",\n\"tennessee\": \"tn\",\n\"texas\": \"tx\",\n\"utah\": \"ut\",\n\"vermont\": \"vt\",\n\"virginia\": \"va\",\n\"washington\": \"wa\",\n\"west virginia\": \"wv\",\n\"wisconsin\": \"wi\",\n\"wyoming\": \"wy\"}\n\nvalue_lower = value.lower()\nreturn abbreviations.get(value_lower, value_lower).upper()"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "wateRateOfPayToUsd",
+    "expression": "jython:if value == None:\n  return cells['wageRateOfPayFromUsd'].value\nelse:\n  return value",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column wateRateOfPayToUsd using expression jython:if value == None:\n  return cells['wageRateOfPayFromUsd'].value\nelse:\n  return value"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "wateRateOfPayToUsd",
+    "newColumnName": "wageRateOfPayToUsd",
+    "description": "Rename column wateRateOfPayToUsd to wageRateOfPayToUsd"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prevalingWageOtherSource",
+    "description": "Remove column prevalingWageOtherSource"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prevalingWageOtherYear",
+    "description": "Remove column prevalingWageOtherYear"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prevalingWageSurveyPublisher",
+    "description": "Remove column prevalingWageSurveyPublisher"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "prevalingWageSurveyName",
+    "description": "Remove column prevalingWageSurveyName"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "h1bDependent",
+    "description": "Remove column h1bDependent"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "willfulViolator",
+    "description": "Remove column willfulViolator"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "supportH1b",
+    "description": "Remove column supportH1b"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "prevalingWageOESYear",
+    "expression": "jython:return ''",
+    "onError": "set-to-blank",
+    "newColumnName": "pieceRateOfPayUsd",
+    "columnInsertIndex": 29,
+    "description": "Create column pieceRateOfPayUsd at index 29 based on column prevalingWageOESYear using expression jython:return ''"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "pieceRateOfPayUsd",
+    "expression": "jython:return ''",
+    "onError": "set-to-blank",
+    "newColumnName": "pieceUnitOfPay",
+    "columnInsertIndex": 30,
+    "description": "Create column pieceUnitOfPay at index 30 based on column pieceRateOfPayUsd using expression jython:return ''"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "statutoryBasis",
+    "description": "Remove column statutoryBasis"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "publicDisclosure",
+    "description": "Remove column publicDisclosure"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "occCode",
+    "newColumnName": "socCode",
+    "description": "Rename column occCode to socCode"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "majorOccCode",
+    "newColumnName": "majorSocCode",
+    "description": "Rename column majorOccCode to majorSocCode"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "occCodeWellFormatted",
+    "newColumnName": "socCodeWellFormatted",
+    "description": "Rename column occCodeWellFormatted to socCodeWellFormatted"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "occTitle",
+    "newColumnName": "socTitle",
+    "description": "Rename column occTitle to socTitle"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "naicsCode",
+    "expression": "jython:return ''",
+    "onError": "set-to-blank",
+    "newColumnName": "anticipatedNumberOfHours",
+    "columnInsertIndex": 20,
+    "description": "Create column anticipatedNumberOfHours at index 20 based on column naicsCode using expression jython:return ''"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "pieceUnitOfPay",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "overtimeRateFromUsd",
+    "columnInsertIndex": 32,
+    "description": "Create column overtimeRateFromUsd at index 32 based on column pieceUnitOfPay using expression jython:return value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "overtimeRateFromUsd",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "overtimeRateToUsd",
+    "columnInsertIndex": 33,
+    "description": "Create column overtimeRateToUsd at index 33 based on column overtimeRateFromUsd using expression jython:return value"
+  },
+  {
+    "op": "core/column-addition",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "baseColumnName": "overtimeRateToUsd",
+    "expression": "jython:return value",
+    "onError": "set-to-blank",
+    "newColumnName": "overtimeUnitOfPay",
+    "columnInsertIndex": 34,
+    "description": "Create column overtimeUnitOfPay at index 34 based on column overtimeRateToUsd using expression jython:return value"
+  }
+]
